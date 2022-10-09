@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/objects/Terrain.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/characters/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/objects/Wall.tscn" type="PackedScene" id=3]
+
+[node name="Level" type="Node2D"]
+
+[node name="Terrain" parent="." instance=ExtResource( 1 )]
+position = Vector2( -16, -8 )
+
+[node name="Node2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1800, 760 )
+
+[node name="Node2D2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1344, 648 )
+
+[node name="Node2D3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 976, 193 )
+
+[node name="Node2D4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 128, 416 )
+
+[node name="Node2D5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 376, 416 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 192, 608 )
