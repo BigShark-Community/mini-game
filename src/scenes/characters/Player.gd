@@ -7,7 +7,7 @@ export var speed = 300.0
 
 export var jump_strength = -700.0
 export var maximum_jumps = 2
-export var double_jump_strength = -900.0
+export var double_jump_strength = -500.0
 
 # Schwerkraft
 export var gravity = 20.0
@@ -19,6 +19,8 @@ var _motion = Vector2.ZERO
 
 onready var _sprite = get_node("CollisionShape2D/Sprite")
 onready var _animation = get_node("CollisionShape2D/Sprite/AnimationPlayer")
+onready var _notifier = get_node("Notifier")
+onready var _player = get_node(".")
 
 
 func _physics_process(delta: float) -> void:
@@ -61,15 +63,17 @@ func _physics_process(delta: float) -> void:
 	
 	# Spieler-Status
 	var is_falling = _motion.y > 0.0 and not is_on_floor()
-	var is_jumping = Input.is_action_just_pressed("jump") and is_on_floor()		
-	var is_double_jumping = Input.is_action_just_pressed("jump") and is_falling
+	var is_jumping = Input.is_action_just_pressed("jump") and is_on_floor()	
+	var is_double_jumping = Input.is_action_just_pressed("jump") and ( is_falling or not is_on_floor() )
 	var is_jump_cancelled = Input.is_action_just_released("jump") and _motion.y < 0.0
 	var is_jump_finished = is_on_floor() && _jumps_made > 0
 	var is_idling = is_on_floor() and not is_zero_approx(_motion.x)
 	var is_running = is_on_floor() and not is_zero_approx(_motion.x)
-
 	
 	# Statusabfrage
+	
+	if is_falling:
+		print("is_falling")
 	
 	# Spieler springt	
 	if is_jumping:
@@ -104,8 +108,9 @@ func _physics_process(delta: float) -> void:
 		_animation.play("Idle")
 	else:
 		_animation.play("RESET")
-		
-#	
 
 	# Führt die Bewegung aus und setzt die neue Geschwindigkeit, z.b. wg. Fallen bei Schwerkraft	
 	_motion = move_and_slide(_motion, UP_DIRECTION)
+
+	if not _notifier.is_on_screen():
+		print("player exited screen")
