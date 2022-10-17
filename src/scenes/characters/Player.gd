@@ -17,6 +17,9 @@ var _jumps_made = 0
 # Bewegungsgeschwindigkeit (Bewegung)
 var _motion = Vector2.ZERO
 
+onready var _sprite = get_node("CollisionShape2D/Sprite")
+onready var _animation = get_node("CollisionShape2D/Sprite/AnimationPlayer")
+
 
 func _physics_process(delta: float) -> void:
 	# Schwerkraft beinflusst die Geschwindigkeit (hoch/runter), damit der Spieler nicht in der Luft hängt
@@ -43,6 +46,12 @@ func _physics_process(delta: float) -> void:
 		- Input.get_action_strength("move_left")
 	)
 	
+	# Füße in Laufrichtung setzen
+	if (_horizontal_direction < 0):
+		_sprite.flip_h = true
+	elif (_horizontal_direction > 0):
+		_sprite.flip_h = false		
+	
 	_motion.x = _horizontal_direction * speed
 	_motion.y += gravity
 
@@ -62,7 +71,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Statusabfrage
 	
-	# Spieler springt
+	# Spieler springt	
 	if is_jumping:
 		# Anzahl der Sprünge erhöhen
 		_jumps_made += 1
@@ -85,12 +94,18 @@ func _physics_process(delta: float) -> void:
 			_motion.y = double_jump_strength
 			
 			print("is_double_jumping")
-			
+
 	elif is_jump_finished: 
 		# Sprung ist beendet, Spieler berührt den Boden, Anzahl der ausgeführten Sprünge zurücksetzen
 		_jumps_made = 0
 		print("is_jump_finished")
+
+	elif is_running:
+		_animation.play("Idle")
+	else:
+		_animation.play("RESET")
 		
 #	
+
 	# Führt die Bewegung aus und setzt die neue Geschwindigkeit, z.b. wg. Fallen bei Schwerkraft	
 	_motion = move_and_slide(_motion, UP_DIRECTION)
