@@ -5,8 +5,8 @@
 [node name="Level" instance=ExtResource( 1 )]
 
 [node name="Player" parent="." index="9"]
-position = Vector2( 1528, 928 )
+position = Vector2( 798, 727 )
 
 [node name="Portal" parent="." index="10"]
-position = Vector2( 184, 40 )
+position = Vector2( 91, 85 )
 rotation = -3.14159

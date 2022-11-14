@@ -8,41 +8,47 @@
 [node name="Level" type="Node2D"]
 
 [node name="Terrain_bottom" parent="." instance=ExtResource( 5 )]
-position = Vector2( 39, 0 )
-scale = Vector2( 0.965, 1 )
+position = Vector2( -83, -272 )
+scale = Vector2( 0.572, 1 )
 
 [node name="Terrain_top" parent="." instance=ExtResource( 5 )]
-position = Vector2( -88, -1224 )
-scale = Vector2( 1.095, 1 )
+position = Vector2( -80, -1162 )
+scale = Vector2( 0.574, 1 )
 
 [node name="Terrain_left" parent="." instance=ExtResource( 5 )]
-position = Vector2( -1160, 1136 )
+position = Vector2( -1163, 867 )
 rotation = -1.57079
-scale = Vector2( 0.615, 1 )
+scale = Vector2( 0.507, 1 )
 
 [node name="Terrain_right" parent="." instance=ExtResource( 5 )]
-position = Vector2( 888, 1136 )
+position = Vector2( -12, 866 )
 rotation = -1.57079
-scale = Vector2( 0.615, 1 )
+scale = Vector2( 0.509, 1 )
 
 [node name="Node2D" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1800, 760 )
+position = Vector2( 958, 597 )
+scale = Vector2( 0.5, 0.5 )
 
 [node name="Node2D2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1344, 648 )
+position = Vector2( 668, 476 )
+scale = Vector2( 0.5, 0.5 )
 
 [node name="Node2D3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 976, 193 )
+position = Vector2( 449, 202 )
+scale = Vector2( 0.5, 0.5 )
 
 [node name="Node2D4" parent="." instance=ExtResource( 3 )]
-position = Vector2( 128, 416 )
+position = Vector2( 64, 357 )
+scale = Vector2( 0.5, 0.5 )
 
 [node name="Node2D5" parent="." instance=ExtResource( 3 )]
-position = Vector2( 376, 416 )
+position = Vector2( 190, 357 )
+scale = Vector2( 0.5, 0.5 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 192, 608 )
+scale = Vector2( 0.604, 0.719 )
 
 [node name="Portal" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1752, 24 )
+position = Vector2( 949, 86 )
 scale = Vector2( 5, 5 )
