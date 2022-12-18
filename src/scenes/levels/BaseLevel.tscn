@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/objects/AnimCoin.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/characters/Player.tscn" type="PackedScene" id=2]
@@ -6,9 +6,12 @@
 [ext_resource path="res://scenes/objects/Portal.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/objects/Wall.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scripts/BaseLevel.gd" type="Script" id=6]
+[ext_resource path="res://scenes/elements/GameHUD.tscn" type="PackedScene" id=7]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 6 )
+
+[node name="GameHUD" parent="." instance=ExtResource( 7 )]
 
 [node name="Terrain_bottom" parent="." instance=ExtResource( 5 )]
 position = Vector2( -83, -272 )
@@ -56,14 +59,21 @@ scale = Vector2( 0.604, 0.719 )
 position = Vector2( 949, 86 )
 scale = Vector2( 5, 5 )
 
-[node name="Coin" parent="." instance=ExtResource( 1 )]
-position = Vector2( 704, 376 )
+[node name="Coins" type="Node2D" parent="."]
 
-[node name="Coin2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 120, 234 )
+[node name="Coin" parent="Coins" instance=ExtResource( 1 )]
+position = Vector2( 72, 272 )
 
-[node name="Coin3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 449, 96 )
+[node name="Coin2" parent="Coins" instance=ExtResource( 1 )]
+position = Vector2( 424, 136 )
 
-[node name="Coin4" parent="." instance=ExtResource( 1 )]
-position = Vector2( 960, 520 )
+[node name="Coin3" parent="Coins" instance=ExtResource( 1 )]
+position = Vector2( 696, 400 )
+
+[node name="Coin4" parent="Coins" instance=ExtResource( 1 )]
+position = Vector2( 952, 512 )
+
+[connection signal="coin_collected" from="Coins/Coin" to="GameHUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coins/Coin2" to="GameHUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coins/Coin3" to="GameHUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coins/Coin4" to="GameHUD" method="_on_coin_collected"]

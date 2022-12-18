@@ -9,4 +9,4 @@ func _on_Portal_body_entered(body: Node) -> void:
 		if (NEXT_LEVEL != ""):
 			get_tree().change_scene(NEXT_LEVEL)
 		else:
-			get_tree().quit()
+			get_tree().change_scene("res://scenes/start.tscn")

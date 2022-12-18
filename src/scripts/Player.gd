@@ -72,8 +72,8 @@ func _physics_process(delta: float) -> void:
 	
 	# Statusabfrage
 	
-	if is_falling:
-		print("is_falling")
+#	if is_falling:
+#		print("is_falling")
 	
 	# Spieler springt	
 	if is_jumping:
@@ -83,7 +83,7 @@ func _physics_process(delta: float) -> void:
 		# Sprungstärke einstellen
 		_motion.y = jump_strength
 		
-		print("is_jumping: "+ str(_jumps_made))
+		#print("is_jumping: "+ str(_jumps_made))
 		
 	# Spiele führt Doppelsprung aus
 	elif is_double_jumping:
@@ -97,12 +97,12 @@ func _physics_process(delta: float) -> void:
 			# Sprungstärke für den Doppelsprung setzen
 			_motion.y = double_jump_strength
 			
-			print("is_double_jumping")
+			#print("is_double_jumping")
 
 	elif is_jump_finished: 
 		# Sprung ist beendet, Spieler berührt den Boden, Anzahl der ausgeführten Sprünge zurücksetzen
 		_jumps_made = 0
-		print("is_jump_finished")
+		#print("is_jump_finished")
 
 	elif is_running:
 		_animation.play("Idle")
@@ -112,5 +112,5 @@ func _physics_process(delta: float) -> void:
 	# Führt die Bewegung aus und setzt die neue Geschwindigkeit, z.b. wg. Fallen bei Schwerkraft	
 	_motion = move_and_slide(_motion, UP_DIRECTION)
 
-	if not _notifier.is_on_screen():
-		print("player exited screen")
+	#if not _notifier.is_on_screen():
+		#print("player exited screen")

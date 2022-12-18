@@ -11,8 +11,12 @@ config_version=4
 [application]
 
 config/name="mini-game"
-run/main_scene="res://scenes/levels/Level1.tscn"
+run/main_scene="res://scenes/Start.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Globals="*res://scripts/Globals.gd"
 
 [display]
 
