@@ -3,11 +3,11 @@ extends KinematicBody2D
 const UP_DIRECTION = Vector2.UP
 
 # Geschwindigkeit
-export var speed = 300.0
+export var speed = 250.0
 
-export var jump_strength = -700.0
+export var jump_strength = -600.0
 export var maximum_jumps = 2
-export var double_jump_strength = -500.0
+export var double_jump_strength = -400.0
 
 # Schwerkraft
 export var gravity = 20.0
@@ -22,46 +22,36 @@ onready var _animation = get_node("CollisionShape2D/Sprite/AnimationPlayer")
 onready var _notifier = get_node("Notifier")
 onready var _player = get_node(".")
 
-
 func _physics_process(delta: float) -> void:
-	# Schwerkraft beinflusst die Geschwindigkeit (hoch/runter), damit der Spieler nicht in der Luft hängt
-	#_motion.y += gravity
-	
-	# Bewegung links/rechts
-	
-	# Wenn die Taste für Rechts gedrück ist,
-#	if Input.is_action_pressed("move_right"):
-#		# dann die Bewegungsgeschwindigkeit auf der X-Achse auf die vorgegebene Geschwindigkeit setzen (+300)
-#		_motion.x = speed
-#
-#	# Wenn die Taste für Links gedrück ist,
-#	elif Input.is_action_pressed("move_left"):
-#		# dann die Bewegungsgeschwindigkeit auf der X-Achse auf die vorgegebene Geschwindigkeit setzen, aber diesmal als negativer Wert (-300)
-#		_motion.x = -speed
 
-# Wenn keine Taste gedrückt ist, dann die Beweungsgeschwindigkeit zurücksetzen auf 0, andernfalls bewegt sich der Spieler in die gleiche Richtung weiter!!
-#	else:
-#		_motion.x = 0
-
-	var _horizontal_direction = (
-		Input.get_action_strength("move_right")
-		- Input.get_action_strength("move_left")
-	)
+	# Laufrichtung auslesen
+	var _horizontal_direction = ( Input.get_action_strength("move_right") - Input.get_action_strength("move_left") )
 	
 	# Füße in Laufrichtung setzen
-	if (_horizontal_direction < 0):
-		_sprite.flip_h = true
-	elif (_horizontal_direction > 0):
-		_sprite.flip_h = false		
+	if (_horizontal_direction < 0): _sprite.flip_h = true
+	elif (_horizontal_direction > 0): _sprite.flip_h = false
 	
+	
+	## Bewegung ist in X- (links, rechts) und Y-Achse (hoch, runter) aufgeteilt ##
+	
+	# Die Links/Rechts Bewegung ergibt sich aus der berechneten Laufrichtung * Geschwindigkeit
 	_motion.x = _horizontal_direction * speed
+	
+	# Die Hoch/Runter Bewegung entspricht einem Springen/Fallen und wird Real durch die Erdanziehungskraft/Schwerkraft
+	# beeinflusst. Wir müssen dies nachbilden, durch den Wert in der Variablen "Gravity"
 	_motion.y += gravity
 
-	_motion = move_and_slide(_motion, UP_DIRECTION)	
+
+	# Bewegung ausführen
+	_motion = move_and_slide(_motion, UP_DIRECTION)
 	
 	
 	
-	# Spieler-Status
+	## Spieler-Status ##
+	
+	# Wir müssen zu jeder Zeit wissen in welchem "Status" sich die Spielerfigur befindet.
+	# Bewegt sie sich gerade, oder steht sie still, fällt sie gerade aus der Luft, oder springt sie hoch
+	
 	var is_falling = _motion.y > 0.0 and not is_on_floor()
 	var is_jumping = Input.is_action_just_pressed("jump") and is_on_floor()	
 	var is_double_jumping = Input.is_action_just_pressed("jump") and ( is_falling or not is_on_floor() )
@@ -70,7 +60,10 @@ func _physics_process(delta: float) -> void:
 	var is_idling = is_on_floor() and not is_zero_approx(_motion.x)
 	var is_running = is_on_floor() and not is_zero_approx(_motion.x)
 	
-	# Statusabfrage
+	
+	## Statusabfrage ##
+	# Wenn wir wissen in welchem Status sich die Spielerfigur gerade befindet, können wir entsprechend
+	# dem Status die Bewegung für diesen Status umsetzen
 	
 #	if is_falling:
 #		print("is_falling")
@@ -109,7 +102,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		_animation.play("RESET")
 
-	# Führt die Bewegung aus und setzt die neue Geschwindigkeit, z.b. wg. Fallen bei Schwerkraft	
+	# Führt die Bewegung aus und setzt die neue Geschwindigkeit, z.b. wg. Fallen bei Schwerkraft
 	_motion = move_and_slide(_motion, UP_DIRECTION)
 
 	#if not _notifier.is_on_screen():
