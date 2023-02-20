@@ -19,8 +19,10 @@ font_data = ExtResource( 1 )
 script = ExtResource( 3 )
 
 [node name="Control" type="Panel" parent="."]
-margin_right = 310.0
-margin_bottom = 85.0
+margin_left = 512.0
+margin_top = 1.0
+margin_right = 822.0
+margin_bottom = 86.0
 custom_styles/panel = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Control"]
