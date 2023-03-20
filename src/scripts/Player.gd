@@ -1,27 +1,27 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 const UP_DIRECTION = Vector2.UP
 
 # Geschwindigkeit
-export var speed = 250.0
+@export var speed = 250.0
 
 
-export var jump_strength = -600.0
-export var maximum_jumps = 2
-export var double_jump_strength = -400.0
+@export var jump_strength = -600.0
+@export var maximum_jumps = 2
+@export var double_jump_strength = -400.0
 
 # Schwerkraft
-export var gravity = 20.0
+@export var gravity = 20.0
 
 var _jumps_made = 0
 
 # Bewegungsgeschwindigkeit (Bewegung)
 var _motion = Vector2.ZERO
 
-onready var _sprite = get_node("CollisionShape2D/Sprite")
-onready var _animation = get_node("CollisionShape2D/Sprite/AnimationPlayer")
-onready var _notifier = get_node("Notifier")
-onready var _player = get_node(".")
+@onready var _sprite = get_node("CollisionShape2D/Sprite2D")
+@onready var _animation = get_node("CollisionShape2D/Sprite2D/AnimationPlayer")
+@onready var _notifier = get_node("Notifier")
+@onready var _player = get_node(".")
 
 func _physics_process(delta: float) -> void:
 
@@ -44,7 +44,10 @@ func _physics_process(delta: float) -> void:
 
 
 	# Bewegung ausführen
-	_motion = move_and_slide(_motion, UP_DIRECTION)
+	set_velocity(_motion)
+	set_up_direction(UP_DIRECTION)
+	move_and_slide()
+	_motion = velocity
 	
 	
 	
@@ -104,7 +107,10 @@ func _physics_process(delta: float) -> void:
 		_animation.play("RESET")
 
 	# Führt die Bewegung aus und setzt die neue Geschwindigkeit, z.b. wg. Fallen bei Schwerkraft
-	_motion = move_and_slide(_motion, UP_DIRECTION)
+	set_velocity(_motion)
+	set_up_direction(UP_DIRECTION)
+	move_and_slide()
+	_motion = velocity
 
 	#if not _notifier.is_on_screen():
 		#print("player exited screen")
