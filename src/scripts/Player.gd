@@ -5,6 +5,7 @@ const UP_DIRECTION = Vector2.UP
 # Geschwindigkeit
 export var speed = 250.0
 
+
 export var jump_strength = -600.0
 export var maximum_jumps = 2
 export var double_jump_strength = -400.0

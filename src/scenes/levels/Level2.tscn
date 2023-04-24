@@ -3,10 +3,11 @@
 [ext_resource path="res://scenes/levels/BaseLevel.tscn" type="PackedScene" id=1]
 
 [node name="Level" instance=ExtResource( 1 )]
+position = Vector2( 0, 7 )
 
-[node name="Player" parent="." index="9"]
-position = Vector2( 798, 727 )
+[node name="Player" parent="." index="1"]
+position = Vector2( 776, 697 )
 
-[node name="Portal" parent="." index="10"]
-position = Vector2( 91, 85 )
+[node name="Portal" parent="." index="2"]
+position = Vector2( 40, 88 )
 rotation = -3.14159
