@@ -19,7 +19,6 @@ var _motion = Vector2.ZERO
 
 onready var _sprite = get_node("CollisionShape2D/Sprite")
 onready var _animation = get_node("CollisionShape2D/Sprite/AnimationPlayer")
-onready var _notifier = get_node("Notifier")
 onready var _player = get_node(".")
 
 func _physics_process(delta: float) -> void:
@@ -57,7 +56,7 @@ func _physics_process(delta: float) -> void:
 	var is_double_jumping = Input.is_action_just_pressed("jump") and ( is_falling or not is_on_floor() )
 	var is_jump_cancelled = Input.is_action_just_released("jump") and _motion.y < 0.0
 	var is_jump_finished = is_on_floor() && _jumps_made > 0
-	var is_idling = is_on_floor() and not is_zero_approx(_motion.x)
+	var is_idling = is_on_floor() and is_zero_approx(_motion.x)
 	var is_running = is_on_floor() and not is_zero_approx(_motion.x)
 	
 	
@@ -104,6 +103,3 @@ func _physics_process(delta: float) -> void:
 
 	# Führt die Bewegung aus und setzt die neue Geschwindigkeit, z.b. wg. Fallen bei Schwerkraft
 	_motion = move_and_slide(_motion, UP_DIRECTION)
-
-	#if not _notifier.is_on_screen():
-		#print("player exited screen")
