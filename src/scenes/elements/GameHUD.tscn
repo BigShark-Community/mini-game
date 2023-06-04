@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://debsa5sfwx7fm"]
+[gd_scene load_steps=5 format=3 uid="uid://debsa5sfwx7fm"]
 
 [ext_resource type="FontFile" uid="uid://blxywk5qp8aal" path="res://assets/fonts/crimes.ttf" id="1"]
 [ext_resource type="Texture2D" uid="uid://ccgch05dftk0h" path="res://assets/sprites/spinning-coin.png" id="2"]
 [ext_resource type="Script" path="res://scripts/GameHUD.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://bked0ctapqdct" path="res://assets/sprites/gdb-coinsgemsetc-1.png" id="4_oc7a8"]
 
 [node name="GameHUD" type="CanvasLayer"]
 script = ExtResource("3")
@@ -13,7 +14,7 @@ offset_top = 1.0
 offset_right = 822.0
 offset_bottom = 86.0
 
-[node name="Sprite2D" type="Sprite2D" parent="Control"]
+[node name="Coin" type="Sprite2D" parent="Control"]
 position = Vector2(44, 43)
 scale = Vector2(4, 4)
 texture = ExtResource("2")
@@ -26,6 +27,22 @@ offset_left = 83.0
 offset_top = 25.0
 offset_right = 123.0
 offset_bottom = 70.0
+theme_override_fonts/font = ExtResource("1")
+theme_override_font_sizes/font_size = 50
+text = "0"
+
+[node name="Heart" type="Sprite2D" parent="Control"]
+position = Vector2(176, 39)
+scale = Vector2(3, 3)
+texture = ExtResource("4_oc7a8")
+region_enabled = true
+region_rect = Rect2(688, 112, 16, 16)
+
+[node name="HeartLabel" type="Label" parent="Control"]
+offset_left = 224.0
+offset_top = 23.0
+offset_right = 264.0
+offset_bottom = 68.0
 theme_override_fonts/font = ExtResource("1")
 theme_override_font_sizes/font_size = 50
 text = "0"

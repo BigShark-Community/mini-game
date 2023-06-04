@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://w3mem2drennn"]
+
+[ext_resource type="Texture2D" uid="uid://h3ct6ml3a85c" path="res://assets/sprites/Spike.png" id="1_2xbtj"]
+[ext_resource type="Script" path="res://scripts/spikes.gd" id="1_fgf0p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bxd7o"]
+size = Vector2(29.5, 9)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pf6nf"]
+resource_name = "Spike"
+texture = ExtResource("1_2xbtj")
+texture_region_size = Vector2i(32, 24)
+0:0/animation_speed = 12.0
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/animation_frame_3/duration = 1.0
+0:0/animation_frame_4/duration = 1.0
+0:0/animation_frame_5/duration = 1.0
+0:0/animation_frame_6/duration = 1.0
+0:0/animation_frame_7/duration = 1.0
+0:0/animation_frame_8/duration = 1.0
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_8lf3x"]
+tile_size = Vector2i(32, 24)
+sources/0 = SubResource("TileSetAtlasSource_pf6nf")
+
+[node name="Spikes" type="Area2D"]
+script = ExtResource("1_fgf0p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(17.25, -5)
+shape = SubResource("RectangleShape2D_bxd7o")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_8lf3x")
+cell_quadrant_size = 32
+format = 2
+layer_0/tile_data = PackedInt32Array(-65536, 0, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_spikes_body_entered"]

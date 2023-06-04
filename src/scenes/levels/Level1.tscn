@@ -1,8 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://cy13x8yae15mw"]
+[gd_scene load_steps=3 format=3 uid="uid://cy13x8yae15mw"]
 
 [ext_resource type="PackedScene" uid="uid://blqfvo2mepun8" path="res://scenes/levels/BaseLevel.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://w3mem2drennn" path="res://scenes/objects/spikes.tscn" id="2_ehca6"]
 
 [node name="Level" instance=ExtResource("1")]
 
 [node name="Portal" parent="." index="2"]
 NEXT_LEVEL = "res://scenes/levels/Level2.tscn"
+
+[node name="Traps" type="Node2D" parent="." index="7"]
+
+[node name="Spikes" parent="Traps" index="0" instance=ExtResource("2_ehca6")]
+position = Vector2(690, 544)
