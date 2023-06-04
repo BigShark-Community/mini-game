@@ -1,12 +1,12 @@
 extends Area2D
 
 
-export(String, FILE) var NEXT_LEVEL: String = ""
+@export var NEXT_LEVEL: String = "" # (String, FILE)
 
 
 func _on_Portal_body_entered(body: Node) -> void:
-	if (body.name == "Player"):
+	if (body.name == "Player") || (body.name == "Godette"):
 		if (NEXT_LEVEL != ""):
-			get_tree().change_scene(NEXT_LEVEL)
+			get_tree().change_scene_to_file(NEXT_LEVEL)
 		else:
-			get_tree().change_scene("res://scenes/start.tscn")
+			get_tree().change_scene_to_file("res://scenes/start.tscn")

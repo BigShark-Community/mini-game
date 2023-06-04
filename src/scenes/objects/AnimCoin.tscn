@@ -1,60 +1,38 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://7q4q8wotumph"]
 
-[ext_resource path="res://assets/sprites/spinning-coin.png" type="Texture" id=1]
-[ext_resource path="res://scripts/Coin.gd" type="Script" id=2]
+[ext_resource type="Script" path="res://scripts/Coin.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://bked0ctapqdct" path="res://assets/sprites/gdb-coinsgemsetc-1.png" id="2_5p24t"]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 7.0
-height = 0.01
+[sub_resource type="CircleShape2D" id="CircleShape2D_6nvip"]
+radius = 6.0
 
-[sub_resource type="Animation" id=2]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 1 ]
-}
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a1vgf"]
+texture = ExtResource("2_5p24t")
+1:1/animation_columns = 6
+1:1/animation_speed = 4.0
+1:1/animation_frame_0/duration = 1.0
+1:1/animation_frame_1/duration = 1.0
+1:1/animation_frame_2/duration = 1.0
+1:1/animation_frame_3/duration = 1.0
+1:1/animation_frame_4/duration = 1.0
+1:1/animation_frame_5/duration = 1.0
+1:1/0 = 0
 
-[sub_resource type="Animation" id=3]
-resource_name = "coin"
-length = 1.6
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.6, 0.9, 1.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 1, 2, 3, 4, 5 ]
-}
+[sub_resource type="TileSet" id="TileSet_m11an"]
+sources/0 = SubResource("TileSetAtlasSource_a1vgf")
 
 [node name="Coin" type="Area2D"]
-scale = Vector2( 4, 4 )
-script = ExtResource( 2 )
+scale = Vector2(4, 4)
+script = ExtResource("2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 1 )
+shape = SubResource("CircleShape2D_6nvip")
 
-[node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 1 )
-hframes = 8
-frame = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
-playback_speed = 2.0
-anims/RESET = SubResource( 2 )
-anims/coin = SubResource( 3 )
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(-8, -9.25)
+tile_set = SubResource("TileSet_m11an")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 65536, 1)
 
 [connection signal="body_entered" from="." to="." method="_on_Coin_body_entered"]

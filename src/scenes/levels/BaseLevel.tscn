@@ -1,133 +1,139 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=3 uid="uid://blqfvo2mepun8"]
 
-[ext_resource path="res://scenes/objects/AnimCoin.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/characters/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/objects/Brick.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/objects/Portal.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/objects/Wall.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scripts/BaseLevel.gd" type="Script" id=6]
-[ext_resource path="res://scenes/elements/GameHUD.tscn" type="PackedScene" id=7]
+[ext_resource type="PackedScene" uid="uid://7q4q8wotumph" path="res://scenes/objects/AnimCoin.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://d0dhqvkhkpw" path="res://assets/sprites/swamp-tileset/2 Background/Layers/5.png" id="2_heiul"]
+[ext_resource type="PackedScene" uid="uid://ysu8p7uk3oxf" path="res://scenes/objects/Brick.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://888net07d0b4" path="res://scenes/objects/Portal.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://cyqltn5c0oymc" path="res://scenes/objects/Wall.tscn" id="5"]
+[ext_resource type="Script" path="res://scripts/BaseLevel.gd" id="6"]
+[ext_resource type="PackedScene" uid="uid://debsa5sfwx7fm" path="res://scenes/elements/GameHUD.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://c1lksysjio1o6" path="res://scenes/characters/Godette.tscn" id="10_n1b75"]
 
 [node name="Level" type="Node2D"]
-script = ExtResource( 6 )
+script = ExtResource("6")
 
-[node name="GameHUD" parent="." instance=ExtResource( 7 )]
-scale = Vector2( 0.6, 0.6 )
-transform = Transform2D( 0.6, 0, 0, 0.6, 0, 0 )
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_top = 144.0
+offset_right = 1160.0
+offset_bottom = 1072.0
+texture = ExtResource("2_heiul")
+stretch_mode = 4
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 192, 608 )
-scale = Vector2( 0.4, 0.5 )
-jump_strength = -400.0
-double_jump_strength = -300.0
+[node name="GameHUD" parent="." instance=ExtResource("7")]
+scale = Vector2(0.6, 0.6)
+transform = Transform2D(0.6, 0, 0, 0.6, 0, 0)
 
-[node name="Portal" parent="." instance=ExtResource( 4 )]
-position = Vector2( 976, 64 )
-scale = Vector2( 2, 2 )
+[node name="Portal" parent="." instance=ExtResource("4")]
+position = Vector2(1072, 80)
+scale = Vector2(0.28, 0.12)
 
 [node name="Coins" type="Node2D" parent="."]
 
-[node name="Coin" parent="Coins" instance=ExtResource( 1 )]
-position = Vector2( 312, 288 )
-scale = Vector2( 2, 2 )
+[node name="Coin" parent="Coins" instance=ExtResource("1")]
+position = Vector2(298, 272)
+scale = Vector2(2, 2)
 
-[node name="Coin2" parent="Coins" instance=ExtResource( 1 )]
-position = Vector2( 288, 288 )
-scale = Vector2( 2, 2 )
+[node name="Coin2" parent="Coins" instance=ExtResource("1")]
+position = Vector2(274, 272)
+scale = Vector2(2, 2)
 
-[node name="Coin3" parent="Coins" instance=ExtResource( 1 )]
-position = Vector2( 264, 288 )
-scale = Vector2( 2, 2 )
+[node name="Coin3" parent="Coins" instance=ExtResource("1")]
+position = Vector2(250, 272)
+scale = Vector2(2, 2)
 
-[node name="Coin4" parent="Coins" instance=ExtResource( 1 )]
-position = Vector2( 573, 488 )
-scale = Vector2( 2, 2 )
+[node name="Coin4" parent="Coins" instance=ExtResource("1")]
+position = Vector2(559, 472)
+scale = Vector2(2, 2)
 
-[node name="Coin5" parent="Coins" instance=ExtResource( 1 )]
-position = Vector2( 704, 104 )
-scale = Vector2( 2, 2 )
+[node name="Coin5" parent="Coins" instance=ExtResource("1")]
+position = Vector2(690, 88)
+scale = Vector2(2, 2)
 
-[node name="Coin6" parent="Coins" instance=ExtResource( 1 )]
-position = Vector2( 152, 392 )
-scale = Vector2( 2, 2 )
+[node name="Coin6" parent="Coins" instance=ExtResource("1")]
+position = Vector2(138, 376)
+scale = Vector2(2, 2)
 
-[node name="Coin7" parent="Coins" instance=ExtResource( 1 )]
-position = Vector2( 848, 552 )
-scale = Vector2( 2, 2 )
+[node name="Coin7" parent="Coins" instance=ExtResource("1")]
+position = Vector2(834, 536)
+scale = Vector2(2, 2)
 
 [node name="Walls" type="Node" parent="."]
 
-[node name="Terrain_bottom" parent="Walls" instance=ExtResource( 5 )]
-position = Vector2( 0, 240 )
-scale = Vector2( 0.53, 0.5 )
+[node name="Terrain_bottom" parent="Walls" instance=ExtResource("5")]
+position = Vector2(-40, 784)
+scale = Vector2(1.09, 1)
 
-[node name="Terrain_top" parent="Walls" instance=ExtResource( 5 )]
-position = Vector2( 0, -680 )
-scale = Vector2( 0.53, 0.5 )
+[node name="Terrain_top" parent="Walls" instance=ExtResource("5")]
+position = Vector2(-64, -150)
+scale = Vector2(1.1, 1)
 
-[node name="Terrain_left" parent="Walls" instance=ExtResource( 5 )]
-position = Vector2( -576, 856 )
+[node name="Terrain_left" parent="Walls" instance=ExtResource("5")]
+position = Vector2(-30, 800)
 rotation = -1.57079
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2(0.79, 1)
 
-[node name="Terrain_right" parent="Walls" instance=ExtResource( 5 )]
-position = Vector2( 500, 856 )
+[node name="Terrain_right" parent="Walls" instance=ExtResource("5")]
+position = Vector2(1178, 800)
 rotation = -1.57079
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2(0.789998, 1)
 
 [node name="Platforms" type="Node" parent="."]
 
-[node name="Plattform1" parent="Platforms" instance=ExtResource( 3 )]
-position = Vector2( 992, 640 )
-scale = Vector2( 0.2, 0.2 )
+[node name="Plattform1" parent="Platforms" instance=ExtResource("3")]
+position = Vector2(992, 640)
+scale = Vector2(0.4, 0.4)
 
-[node name="Plattform2" parent="Platforms" instance=ExtResource( 3 )]
-position = Vector2( 848, 584 )
-scale = Vector2( 0.2, 0.2 )
+[node name="Plattform2" parent="Platforms" instance=ExtResource("3")]
+position = Vector2(848, 584)
+scale = Vector2(0.4, 0.4)
 
-[node name="Plattform3" parent="Platforms" instance=ExtResource( 3 )]
-position = Vector2( 704, 552 )
-scale = Vector2( 0.2, 0.2 )
+[node name="Plattform3" parent="Platforms" instance=ExtResource("3")]
+position = Vector2(704, 552)
+scale = Vector2(0.4, 0.4)
 
-[node name="Plattform4" parent="Platforms" instance=ExtResource( 3 )]
-position = Vector2( 573, 520 )
-scale = Vector2( 0.2, 0.2 )
+[node name="Plattform4" parent="Platforms" instance=ExtResource("3")]
+position = Vector2(573, 520)
+scale = Vector2(0.4, 0.4)
 
-[node name="Plattform5" parent="Platforms" instance=ExtResource( 3 )]
-position = Vector2( 456, 480 )
-scale = Vector2( 0.2, 0.2 )
+[node name="Plattform5" parent="Platforms" instance=ExtResource("3")]
+position = Vector2(456, 480)
+scale = Vector2(0.4, 0.4)
 
-[node name="Plattform6" parent="Platforms" instance=ExtResource( 3 )]
-position = Vector2( 344, 432 )
-scale = Vector2( 0.2, 0.2 )
+[node name="Plattform6" parent="Platforms" instance=ExtResource("3")]
+position = Vector2(344, 432)
+scale = Vector2(0.4, 0.4)
 
-[node name="Plattform7" parent="Platforms" instance=ExtResource( 3 )]
-position = Vector2( 205, 424 )
-scale = Vector2( 0.2, 0.2 )
+[node name="Plattform7" parent="Platforms" instance=ExtResource("3")]
+position = Vector2(205, 424)
+scale = Vector2(0.4, 0.4)
 
-[node name="Plattform8" parent="Platforms" instance=ExtResource( 3 )]
-position = Vector2( 160, 424 )
-scale = Vector2( 0.2, 0.2 )
+[node name="Plattform8" parent="Platforms" instance=ExtResource("3")]
+position = Vector2(160, 424)
+scale = Vector2(0.4, 0.4)
 
-[node name="Plattform9" parent="Platforms" instance=ExtResource( 3 )]
-position = Vector2( 112, 424 )
-scale = Vector2( 0.2, 0.2 )
+[node name="Plattform9" parent="Platforms" instance=ExtResource("3")]
+position = Vector2(112, 424)
+scale = Vector2(0.4, 0.4)
 
-[node name="Plattform10" parent="Platforms" instance=ExtResource( 3 )]
-position = Vector2( 256, 320 )
-scale = Vector2( 0.2, 0.2 )
+[node name="Plattform10" parent="Platforms" instance=ExtResource("3")]
+position = Vector2(256, 320)
+scale = Vector2(0.4, 0.4)
 
-[node name="Plattform11" parent="Platforms" instance=ExtResource( 3 )]
-position = Vector2( 304, 320 )
-scale = Vector2( 0.2, 0.2 )
+[node name="Plattform11" parent="Platforms" instance=ExtResource("3")]
+position = Vector2(304, 320)
+scale = Vector2(0.4, 0.4)
 
-[node name="Plattform12" parent="Platforms" instance=ExtResource( 3 )]
-position = Vector2( 504, 208 )
-scale = Vector2( 0.2, 0.2 )
+[node name="Plattform12" parent="Platforms" instance=ExtResource("3")]
+position = Vector2(504, 208)
+scale = Vector2(0.4, 0.4)
 
-[node name="Plattform13" parent="Platforms" instance=ExtResource( 3 )]
-position = Vector2( 704, 136 )
-scale = Vector2( 0.2, 0.2 )
+[node name="Plattform13" parent="Platforms" instance=ExtResource("3")]
+position = Vector2(824, 176)
+scale = Vector2(0.4, 0.4)
+
+[node name="Godette" parent="." instance=ExtResource("10_n1b75")]
+position = Vector2(72, 687)
+scale = Vector2(0.25, 0.25)
 
 [connection signal="coin_collected" from="Coins/Coin" to="GameHUD" method="_on_coin_collected"]
 [connection signal="coin_collected" from="Coins/Coin2" to="GameHUD" method="_on_coin_collected"]
