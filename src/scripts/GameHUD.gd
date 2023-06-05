@@ -4,12 +4,16 @@ extends CanvasLayer
 @onready var HeartNode: Node = get_node("Control/HeartLabel")
 
 func _ready() -> void:
-	CoinsNode.text = str(Globals.coins)
-	HeartNode.text = str(Globals.lives)
-
+	Globals.live_lost.connect(_updateHUD)
+	_updateHUD()	
 
 func _on_coin_collected() ->void:
-	_ready()
+	_updateHUD()
 
 func _on_live_lost() ->void:
-	_ready()
+	_updateHUD()
+
+func _updateHUD():
+	print("updatehud")
+	CoinsNode.text = str(Globals.coins)
+	HeartNode.text = str(Globals.lives)

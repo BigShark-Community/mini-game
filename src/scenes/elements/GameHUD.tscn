@@ -39,6 +39,7 @@ region_enabled = true
 region_rect = Rect2(688, 112, 16, 16)
 
 [node name="HeartLabel" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = 224.0
 offset_top = 23.0
 offset_right = 264.0
